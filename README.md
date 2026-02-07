@@ -1,57 +1,92 @@
-___
-# DELETE THIS INSTRUCTIONS AND ADD AN INTRODUCTION ABOUT YOUR PROJECT
-___
+# SlideSence: AI-Powered IoT Landslide Monitoring System 🏔️⚠️
 
-# eYY-3yp-project-template
+[![Status](https://img.shields.io/badge/Status-In%20Progress-yellow)](https://github.com/yourusername/SlideSence)
+[![Platform](https://img.shields.io/badge/Platform-ESP32%20%7C%20AWS%20IoT-blue)](https://aws.amazon.com/iot/)
+[![Language](https://img.shields.io/badge/Language-C%2B%2B%20%7C%20Python-green)](https://github.com/yourusername/SlideSence)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-This is a sample repository you can use for your Embedded Systems project. Once you followed these instructions, remove the text and add a brief introduction to here.
+**SlideSence** is an advanced IoT-based early warning system designed to detect landslide-prone conditions and alert communities in real-time. By monitoring soil moisture, rainfall intensity, and ground stability, SlideSence bridges the gap between environmental data and life-saving alerts.
 
-### Enable GitHub Pages
 
-You can put the things to be shown in GitHub pages into the _docs/_ folder. Both html and md file formats are supported. You need to go to settings and enable GitHub pages and select _main_ branch and _docs_ folder from the dropdowns, as shown in the below image.
 
-![image](https://user-images.githubusercontent.com/11540782/98789936-028d3600-2429-11eb-84be-aaba665fdc75.png)
+## 📖 Table of Contents
+- [Motivation](#-motivation)
+- [System Architecture](#-system-architecture)
+- [Key Features](#-key-features)
+- [Tech Stack](#-tech-stack)
+- [Hardware Requirements](#-hardware-requirements)
+- [Future Enhancements](#-future-enhancements)
 
-### Special Configurations
 
-These projects will be automatically added into [https://projects.ce.pdn.ac.lk](). If you like to show more details about your project on this site, you can fill the parameters in the file, _/docs/index.json_
 
-```
-{
-  "title": "This is the title of the project",
-  "team": [
-    {
-      "name": "Team Member Name 1",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    },
-    {
-      "name": "Team Member Name 2",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    },
-    {
-      "name": "Team Member Name 3",
-      "email": "email@eng.pdn.ac.lk",
-      "eNumber": "E/yy/xxx"
-    }
-  ],
-  "supervisors": [
-    {
-      "name": "Dr. Supervisor 1",
-      "email": "email@eng.pdn.ac.lk"
-    },
-    {
-      "name": "Supervisor 2",
-      "email": "email@eng.pdn.ac.lk"
-    }
-  ],
-  "tags": ["Web", "Embedded Systems"]
-}
-```
+## 💡 Motivation
+Landslides often occur suddenly during extreme weather, frequently cutting off the very cellular and internet networks that traditional warning systems rely on. 
 
-Once you filled this _index.json_ file, please verify the syntax is correct. (You can use [this](https://jsonlint.com/) tool).
+**SlideSence addresses:**
+* **Connectivity Gaps:** Reliable local communication when the cloud is unreachable.
+* **Power Constraints:** Optimized for remote, battery-powered deployments.
+* **Latency:** Real-time localized processing for immediate evacuation triggers.
 
-### Page Theme
 
-A custom theme integrated with this GitHub Page, which is based on [github.com/cepdnaclk/eYY-project-theme](https://github.com/cepdnaclk/eYY-project-theme). If you like to remove this default theme, you can remove the file, _docs/\_config.yml_ and use HTML based website.
+
+## 🏗 System Architecture
+
+
+
+The system operates across four distinct layers to ensure redundancy and reliability:
+
+1.  **Sensor Layer:** ESP32-linked sensors monitoring moisture, tilt, and rainfall.
+2.  **Edge Layer:** Local data processing on ESP32 with burst-mode capability during high-risk events.
+3.  **Gateway Layer:** A Raspberry Pi acting as a local MQTT broker and Wi-Fi hotspot during network failures.
+4.  **Cloud Layer:** AWS/Firebase integration for long-term storage, ML analysis, and global notifications (FCM).
+
+
+
+## 🚀 Key Features
+* **Hybrid Communication:** Uses MQTT for lightweight data transfer and Firebase (FCM) for push notifications.
+* **Multi-Level Alerts:** Three-tier logic system: `NORMAL` | `WARNING` | `DANGER`.
+* **Offline Resilience:** Gateway mode allows local device-to-device alerts even if the global internet fails.
+* **Power Efficient:** Deep-sleep cycles and solar-ready power management.
+
+
+
+## 🛠 Tech Stack
+| Component | Technology |
+| :--- | :--- |
+| **Microcontroller** | ESP32 (C++/Arduino) |
+| **Gateway** | Raspberry Pi (Python) |
+| **Communication** | MQTT, WebSockets |
+| **Cloud/Backend** | Firebase, AWS IoT Core |
+| **Analysis** | Python (NumPy, Pandas) |
+| **Frontend** | React/Flutter (Mobile & Web) |
+
+## ⚙️ Hardware Components
+* **ESP32:** Main processing unit for sensor nodes.
+* **Raspberry Pi (3/4):** Central gateway and local server.
+* **Sensors:** * Capacitive Soil Moisture Sensor
+    * Tipping Bucket Rain Gauge
+    * MPU6050 (Accelerometer/Gyroscope for tilt detection)
+* **Power:** 18650 Li-ion batteries + 5V Solar panels.
+
+
+
+## 📈 Future Enhancements
+- [ ] **ML Integration:** Deploying TensorFlow Lite models on the Edge for better prediction accuracy.
+- [ ] **LoRaWAN Support:** Expanding range to 10km+ for deep valley deployments.
+- [ ] **SMS Fallback:** Integration with Twilio for non-smartphone users.
+- [ ] **Public API:** Allowing local authorities to pull real-time environmental data.
+
+
+## 🤝 Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+
+
+## 📄 License
+Distributed under the MIT License. See `LICENSE` for more information.
