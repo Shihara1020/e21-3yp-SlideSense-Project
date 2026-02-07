@@ -5,7 +5,7 @@ repository-name: e21-3yp-SlideSense
 title: SlideSense
 ---
 
-# SlideSense: AI-Powered IoT Landslide Monitoring System 🏔️⚠️
+# SlideSense: AI-Powered IoT Landslide Monitoring System
 
 
 
