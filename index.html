@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SalideSense — IoT Landslide Detection & Early Warning System</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Link to External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gbg"></div>
+    <nav>
+        <a href="#" class="nl"><img src="images/logo.png" alt="SlideSense" class="nav-logo"></a>
+        <ul class="nls">
+            <li><a href="#problem">Problem</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#techstack">Tech Stack</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#api">API</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#budget">Budget</a></li>
+        </ul>
+        <div class="nb">3YP · 2025–2026</div>
+    </nav>
+
+    <section id="hero">
+        <div class="con hero-inner">
+            <div class="hleft">
+                <div class="ht">IoT · Embedded Systems · Cloud · Mobile</div>
+                <h1><span class="g">Salide</span><span class="s">Sense</span><span class="sub">Real-Time Landslide Detection<br>&amp; Early Warning System</span></h1>
+                <p class="hd">A multi-layered IoT platform combining embedded sensor probes, AWS cloud intelligence, and a dual-connectivity mobile app to protect mountain communities — before disaster strikes.</p>
+                <div class="hb">
+                    <a href="#architecture" class="bp">Explore Architecture</a>
+                    <a href="#team" class="bs">Meet the Team</a>
+                </div>
+            </div>
+            <div class="hright">
+                <img src="images/probe.png" alt="SlideSense Probe" class="probe-img">
+            </div>
+        </div>
+        <div class="hs">
+            <div class="st"><div class="sn">4</div><div class="sl">System Layers</div></div>
+            <div class="st"><div class="sn">6</div><div class="sl">Sensor Types</div></div>
+            <div class="st"><div class="sn">3</div><div class="sl">Alert Levels</div></div>
+        </div>
+        <div class="sh"><div class="sln"></div>SCROLL TO EXPLORE</div>
+    </section>
+
+    <section id="problem">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">01 · Problem Statement</div>
+                <h2>Why This<br>Matters</h2>
+                <p class="sd">Existing landslide monitoring systems fail communities at the most critical moments. We identified four core gaps.</p>
+            </div>
+            <div class="pg rev">
+                <div class="pc"><div class="pn">01</div><div class="pt">No Real-Time Access for Residents</div><p class="px">Current systems centralize data for authorities only. Residents in high-risk zones receive warnings too late, if at all. Our system pushes alerts directly to household mobile devices in seconds.</p></div>
+                <div class="pc"><div class="pn">02</div><div class="pt">Single-Point Internet Dependency</div><p class="px">Disaster events destroy the very internet infrastructure needed for alerts. Our dual-connection architecture ensures the app continues working via local Wi-Fi even when cellular networks are down.</p></div>
+                <div class="pc"><div class="pn">03</div><div class="pt">Siloed Environmental Data</div><p class="px">Valuable soil and rainfall data collected by monitoring hardware is never exposed to researchers. Our open Research API democratizes access to anonymized environmental datasets for geological studies.</p></div>
+                <div class="pc"><div class="pn">04</div><div class="pt">Binary Alert Systems</div><p class="px">Most systems use a simple on/off alarm. Our 3-level warning logic (Normal → Warning → Dangerous) allows communities to take graduated precautions rather than reacting only when it is too late.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">02 · System Architecture</div>
+                <h2>Four-Layer<br>Architecture</h2>
+                <p class="sd">A vertically integrated system from physical sensors in the ground to the cloud and into residents' pockets.</p>
+            </div>
+            <div class="al rev">
+                <!-- Layer 01 -->
+                <div class="ay lhw">
+                    <div class="alb"><div class="an">LAYER 01</div><div class="am">Hardware</div><div class="as">Embedded Probes</div></div>
+                    <div class="ac">
+                        <div class="ai"><div class="aii">🧠</div><div class="ait">Core Controller</div><div class="aid">ESP32 Central Unit aggregates data from all peripheral sensor probes.</div><span class="ab">ESP32</span></div>
+                        <div class="ai"><div class="aii">💧</div><div class="ait">Soil Moisture</div><div class="aid">Dielectric sensors measure soil water content saturation continuously.</div><span class="ab">Dielectric</span></div>
+                        <div class="ai"><div class="aii">🌧️</div><div class="ait">Rain Gauge</div><div class="aid">Tracks precipitation intensity to model slope loading conditions.</div><span class="ab">Tipping Bucket</span></div>
+                        <div class="ai"><div class="aii">📐</div><div class="ait">Tilt / Orientation</div><div class="aid">BNO055 (9-axis) + SCA60C (single-axis) detect slope instability.</div><span class="ab">BNO055 · SCA60C</span></div>
+                        <div class="ai"><div class="aii">📳</div><div class="ait">Vibration</div><div class="aid">Geophones and piezoelectric sensors detect ground movement.</div><span class="ab">Geophone</span></div>
+                        <div class="ai"><div class="aii">📡</div><div class="ait">Comms Bus</div><div class="aid">RS485 wired or LoRa/ESP-NOW wireless mesh between probes.</div><span class="ab">RS485 · LoRa</span></div>
+                    </div>
+                </div>
+                <!-- Layer 02 -->
+                <div class="ay lcl">
+                    <div class="alb"><div class="an">LAYER 02</div><div class="am">Cloud</div><div class="as">AWS Backend</div></div>
+                    <div class="ac">
+                        <div class="ai"><div class="aii">☁️</div><div class="ait">AWS IoT Core</div><div class="aid">Managed MQTT broker with device shadows and certificate-based authentication.</div><span class="ab">MQTT · TLS</span></div>
+                        <div class="ai"><div class="aii">🖥️</div><div class="ait">EC2 Backend</div><div class="aid">FastAPI Python engine validates payloads, runs risk analysis, triggers alerts.</div><span class="ab">FastAPI · Python</span></div>
+                        <div class="ai"><div class="aii">📊</div><div class="ait">Time-Series DB</div><div class="aid">PostgreSQL + TimescaleDB for high-frequency sensor reads and range queries.</div><span class="ab">TimescaleDB</span></div>
+                        <div class="ai"><div class="aii">🗄️</div><div class="ait">Relational DB</div><div class="aid">AWS RDS stores user profiles, probe configurations, and alert history.</div><span class="ab">AWS RDS</span></div>
+                    </div>
+                </div>
+                <!-- Layer 03 -->
+                <div class="ay lap">
+                    <div class="alb"><div class="an">LAYER 03</div><div class="am">Interface</div><div class="as">App &amp; Dashboard</div></div>
+                    <div class="ac">
+                        <div class="ai"><div class="aii">📱</div><div class="ait">Mobile App</div><div class="aid">Flutter dual-mode: local Wi-Fi (direct probe) ↔ cellular cloud mode, auto-switching.</div><span class="ab">Flutter · JWT</span></div>
+                        <div class="ai"><div class="aii">🔐</div><div class="ait">Digital Key System</div><div class="aid">Max 2 authorized household devices connect locally to prevent overcrowding.</div><span class="ab">JWT · Device Auth</span></div>
+                        <div class="ai"><div class="aii">🖥️</div><div class="ait">Admin Dashboard</div><div class="aid">React web console for authorities to monitor probes, visualize trends, set thresholds.</div><span class="ab">React · Chart.js</span></div>
+                    </div>
+                </div>
+                <!-- Layer 04 -->
+                <div class="ay lar">
+                    <div class="alb"><div class="an">LAYER 04</div><div class="am">Research</div><div class="as">3rd Party API</div></div>
+                    <div class="ac">
+                        <div class="ai"><div class="aii">🔬</div><div class="ait">Public Research API</div><div class="aid">REST endpoints exposing anonymized environmental data to universities and institutes.</div><span class="ab">REST · Read-Only</span></div>
+                        <div class="ai"><div class="aii">⚡</div><div class="ait">Rate Limiting</div><div class="aid">API key-gated access protects core infrastructure from research load spikes.</div><span class="ab">API Keys</span></div>
+                        <div class="ai"><div class="aii">📈</div><div class="ait">Historical Datasets</div><div class="aid">Returns rainfall patterns, moisture retention trends spanning months of recordings.</div><span class="ab">Time-Series JSON</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="techstack">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">03 · Technology Stack</div>
+                <h2>System<br>Data Flow</h2>
+                <p class="sd">From sensor probe to resident screen — every technology chosen for a specific reason.</p>
+            </div>
+
+            <div class="ts-diagram rev">
+
+                <!-- STAGE 1: EDGE -->
+                <div class="ts-stage">
+                    <div class="ts-stage-hdr"><span class="ts-stage-num">01</span>Edge Layer</div>
+                    <div class="ts-flow-col">
+                        <div class="ts-chip" style="--bc:#9b59b6">
+                            <div class="ts-chip-ico">📡</div>
+                            <div class="ts-chip-body">
+                                <div class="ts-chip-name">IoT Sensor Probe</div>
+                                <div class="ts-chip-sub">ESP32 · 6 Sensor Types</div>
+                                <div class="ts-chip-tags"><span>Soil</span><span>Rain</span><span>Tilt</span><span>Vibration</span></div>
+                            </div>
+                        </div>
+                        <div class="ts-vconn"><span class="ts-conn-label">MQTT / TLS</span></div>
+                        <div class="ts-chip" style="--bc:#7AA116">
+                            <div class="ts-chip-ico ts-chip-ico-text" style="background:#7AA116">IoT</div>
+                            <div class="ts-chip-body">
+                                <div class="ts-chip-name">AWS IoT Core</div>
+                                <div class="ts-chip-sub">Device Shadows · Cert Auth</div>
+                                <div class="ts-chip-tags"><span>MQTT Broker</span><span>mTLS</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ts-harrow"><svg viewBox="0 0 60 24" fill="none"><path d="M0 12 H52 M44 4 L52 12 L44 20" stroke="#1a8fa8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+                <!-- STAGE 2: CLOUD BACKEND -->
+                <div class="ts-stage ts-stage-wide">
+                    <div class="ts-stage-hdr"><span class="ts-stage-num">02</span>Cloud Backend</div>
+                    <div class="ts-flow-col">
+                        <div class="ts-chip-row">
+                            <div class="ts-chip ts-chip-half" style="--bc:#FF9900">
+                                <div class="ts-chip-ico ts-chip-ico-text" style="background:#FF9900">λ</div>
+                                <div class="ts-chip-body">
+                                    <div class="ts-chip-name">AWS Lambda</div>
+                                    <div class="ts-chip-sub">Serverless triggers</div>
+                                </div>
+                            </div>
+                            <div class="ts-chip ts-chip-half" style="--bc:#FFCA28">
+                                <div class="ts-chip-ico">🔥</div>
+                                <div class="ts-chip-body">
+                                    <div class="ts-chip-name">Firebase FCM</div>
+                                    <div class="ts-chip-sub">Push notifications</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ts-vconn"></div>
+                        <div class="ts-chip" style="--bc:#FF9900">
+                            <div class="ts-chip-ico ts-chip-ico-text" style="background:#FF9900">EC2</div>
+                            <div class="ts-chip-body">
+                                <div class="ts-chip-name">Amazon EC2</div>
+                                <div class="ts-chip-sub">Python · FastAPI · JWT</div>
+                                <div class="ts-chip-tags"><span>Risk Engine</span><span>Async I/O</span><span>API Keys</span></div>
+                            </div>
+                        </div>
+                        <div class="ts-vconn"></div>
+                        <div class="ts-chip-row">
+                            <div class="ts-chip ts-chip-half" style="--bc:#336791">
+                                <div class="ts-chip-ico">🐘</div>
+                                <div class="ts-chip-body">
+                                    <div class="ts-chip-name">PostgreSQL<br>+ TimescaleDB</div>
+                                    <div class="ts-chip-sub">Time-series data</div>
+                                </div>
+                            </div>
+                            <div class="ts-chip ts-chip-half" style="--bc:#527FFF">
+                                <div class="ts-chip-ico ts-chip-ico-text" style="background:#527FFF">RDS</div>
+                                <div class="ts-chip-body">
+                                    <div class="ts-chip-name">Amazon RDS</div>
+                                    <div class="ts-chip-sub">User profiles · Config</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ts-harrow"><svg viewBox="0 0 60 24" fill="none"><path d="M0 12 H52 M44 4 L52 12 L44 20" stroke="#1a8fa8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+
+                <!-- STAGE 3: INTERFACES -->
+                <div class="ts-stage">
+                    <div class="ts-stage-hdr"><span class="ts-stage-num">03</span>Interface Layer</div>
+                    <div class="ts-flow-col">
+                        <div class="ts-chip" style="--bc:#54C5F8">
+                            <div class="ts-chip-ico">📱</div>
+                            <div class="ts-chip-body">
+                                <div class="ts-chip-name">Flutter Mobile App</div>
+                                <div class="ts-chip-sub">Android · iOS · Dual-mode</div>
+                                <div class="ts-chip-tags"><span>Wi-Fi Direct</span><span>Cellular</span><span>Alarms</span></div>
+                            </div>
+                        </div>
+                        <div class="ts-vconn"><span class="ts-conn-label">WebSockets · REST · HTTPS</span></div>
+                        <div class="ts-chip" style="--bc:#00e5ff">
+                            <div class="ts-chip-ico">🔒</div>
+                            <div class="ts-chip-body">
+                                <div class="ts-chip-name">Secure API Layer</div>
+                                <div class="ts-chip-sub">REST · WebSockets · HTTPS</div>
+                                <div class="ts-chip-tags"><span>JWT Auth</span><span>Rate Limiting</span></div>
+                            </div>
+                        </div>
+                        <div class="ts-vconn"></div>
+                        <div class="ts-chip" style="--bc:#61DAFB">
+                            <div class="ts-chip-ico">⚛</div>
+                            <div class="ts-chip-body">
+                                <div class="ts-chip-name">React Admin Dashboard</div>
+                                <div class="ts-chip-sub">Real-time charts · Thresholds</div>
+                                <div class="ts-chip-tags"><span>Chart.js</span><span>Live Data</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    </section>
+
+    <section id="features">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">04 · Key Features</div>
+                <h2>Intelligent<br>By Design</h2>
+                <p class="sd">Every feature engineered to function when conventional systems fail.</p>
+            </div>
+            <div class="fl2">
+                <div class="flist rev">
+                    <div class="fi act"><div class="fit"><span class="fic">🚨</span> 3-Level Alert Logic</div><p class="fd">Normal, Warning, and Dangerous states driven by multi-parameter analysis. Dangerous only triggers when multiple critical thresholds breach simultaneously — preventing false alarms while guaranteeing real ones.</p></div>
+                    <div class="fi"><div class="fit"><span class="fic">📡</span> Dual-Connection Mobile App</div><p class="fd">At home: connects directly to the local ESP32 hub via Wi-Fi for second-by-second readings. Away: switches to cellular cloud mode. Continues working even when internet infrastructure is destroyed.</p></div>
+                    <div class="fi"><div class="fit"><span class="fic">⚡</span> Adaptive Sampling Rate</div><p class="fd">15-minute intervals in normal mode conserves probe battery. Automatically escalates to 10-second burst mode when vibration or tilt thresholds are crossed — capturing events in full resolution.</p></div>
+                    <div class="fi"><div class="fit"><span class="fic">🔑</span> Digital Key Access Control</div><p class="fd">Max 2 authorized household devices connect to the local probe network. Prevents overcrowding during emergencies and ensures priority access for residents rather than bystanders.</p></div>
+                    <div class="fi"><div class="fit"><span class="fic">🔬</span> Open Research API</div><p class="fd">Anonymized environmental data exposed to third-party researchers via dedicated read-only API. Rate-limited and API key-gated to protect core system performance from research load.</p></div>
+                </div>
+                <div class="fv rev">
+                    <div class="ad">
+                        <div class="adh">// live alert monitor — probe-network-01</div>
+                        <div class="ale nor"><div><div class="als">● NORMAL</div><div class="alv">All parameters within safe bounds</div></div><div style="font-family:'JetBrains Mono';font-size:11px;color:#4a6a7a;">STATE A</div></div>
+                        <div class="ale war"><div><div class="als">⚠ WARNING</div><div class="alv">Moisture threshold exceeded: 72%</div></div><div style="font-family:'JetBrains Mono';font-size:11px;color:#4a6a7a;">STATE B</div></div>
+                        <div class="ale dan"><div><div class="als">🔴 DANGEROUS</div><div class="alv">Vibration + High Moisture + Tilt Active</div></div><div style="font-family:'JetBrains Mono';font-size:11px;color:#4a6a7a;">STATE C</div></div>
+                        <div class="sr">
+                            <div class="ro"><div class="rl">Soil Moisture</div><div class="rv">34.2<span class="ru">%</span></div></div>
+                            <div class="ro"><div class="rl">Rainfall Rate</div><div class="rv">2.4<span class="ru"> mm/hr</span></div></div>
+                            <div class="ro"><div class="rl">Tilt Angle</div><div class="rv">1.2<span class="ru">°</span></div></div>
+                            <div class="ro"><div class="rl">Vibration</div><div class="rv">0.03<span class="ru"> g</span></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="api">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">05 · Research API</div>
+                <h2>Open Data<br>for Science</h2>
+                <p class="sd">A dedicated, secure API layer allowing universities and geological institutes to access environmental datasets without touching user-sensitive infrastructure.</p>
+            </div>
+            <div class="apl">
+                <div class="rev">
+                    <div class="epl">
+                        <div class="ep"><span class="mt get">GET</span><div><div class="epath">/api/v1/public/rainfall-history</div><div class="edesc">Time-series precipitation data for a specified region and date range</div></div></div>
+                        <div class="ep"><span class="mt get">GET</span><div><div class="epath">/api/v1/public/soil-saturation</div><div class="edesc">Moisture retention logs for agricultural and geological studies</div></div></div>
+                        <div class="ep"><span class="mt get">GET</span><div><div class="epath">/api/v1/public/tilt-history</div><div class="edesc">Historical slope angle readings for terrain stability analysis</div></div></div>
+                        <div class="ep"><span class="mt get">GET</span><div><div class="epath">/api/v1/public/events</div><div class="edesc">Logged event records when alert levels exceeded thresholds</div></div></div>
+                    </div>
+                    <div style="margin-top:32px;padding:24px 32px;background:var(--bg2);border:1px solid var(--bdr);display:flex;gap:40px;flex-wrap:wrap;">
+                        <div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--t2);letter-spacing:.1em;margin-bottom:6px;">ACCESS</div><div style="font-family:'Syne';font-size:16px;font-weight:700;">API Key Required</div></div>
+                        <div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--t2);letter-spacing:.1em;margin-bottom:6px;">PERMISSIONS</div><div style="font-family:'Syne';font-size:16px;font-weight:700;">Read-Only</div></div>
+                        <div><div style="font-family:'JetBrains Mono';font-size:11px;color:var(--t2);letter-spacing:.1em;margin-bottom:6px;">RATE LIMIT</div><div style="font-family:'Syne';font-size:16px;font-weight:700;">1000 req/day</div></div>
+                    </div>
+                </div>
+                <div class="cb rev">
+{<br>
+&nbsp;&nbsp;<span class="ck">"region"</span>: <span class="cs">"uva-highlands-lk"</span>,<br>
+&nbsp;&nbsp;<span class="ck">"unit"</span>: <span class="cs">"mm/hr"</span>,<br>
+&nbsp;&nbsp;<span class="ck">"resolution"</span>: <span class="cs">"15min"</span>,<br>
+&nbsp;&nbsp;<span class="ck">"records"</span>: [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"ts"</span>: <span class="cs">"2025-01-15T06:00:00Z"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"rainfall_mm"</span>: <span class="cn">2.4</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"probe_id"</span>: <span class="cs">"probe-07-anon"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"alert_active"</span>: <span class="cb2">false</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"ts"</span>: <span class="cs">"2025-01-15T06:15:00Z"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"rainfall_mm"</span>: <span class="cn">5.8</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"probe_id"</span>: <span class="cs">"probe-07-anon"</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"alert_active"</span>: <span class="cb2">true</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;<span class="ck">"meta"</span>: {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"anonymized"</span>: <span class="cb2">true</span>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="ck">"source"</span>: <span class="cs">"geoshield-api-v1"</span><br>
+&nbsp;&nbsp;}<br>
+}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">06 · The Team</div>
+                <h2>People Behind<br>SlideSense</h2>
+                <p class="sd">A multidisciplinary third-year project team spanning embedded systems, cloud infrastructure, and mobile development.</p>
+            </div>
+
+            <!-- Team Members -->
+            <div class="tm-group rev">
+                <div class="tm-group-label">Team Members</div>
+                <div class="tm-row">
+
+                    <div class="tm-card">
+                        <div class="tm-avatar-wrap">
+                            <img src="images/team/adhikari.jpg" alt="R.A.J.C. Adhikari" class="tm-avatar-img" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+                            <div class="tm-initials">RA</div>
+                        </div>
+                        <div class="tm-name">D.M.E.S. Dewagedara</div>
+                        <div class="tm-id">E/21/087</div>
+                        <a href="#" class="tm-port">On eportfolio</a>
+                        <div class="tm-links">
+                            <a href="#" class="tm-ico" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                            <a href="#" class="tm-ico" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            <a href="mailto:" class="tm-ico" title="Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                        </div>
+                    </div>
+
+                    <div class="tm-card">
+                        <div class="tm-avatar-wrap">
+                            <img src="images/team/adikari.jpg" alt="A.M.K.M. Adikari" class="tm-avatar-img" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+                            <div class="tm-initials">AA</div>
+                        </div>
+                        <div class="tm-name">Fikry</div>
+                        <div class="tm-id">E/21/138</div>
+                        <a href="#" class="tm-port">On eportfolio</a>
+                        <div class="tm-links">
+                            <a href="#" class="tm-ico" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                            <a href="#" class="tm-ico" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            <a href="mailto:" class="tm-ico" title="Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                        </div>
+                    </div>
+
+                    <div class="tm-card">
+                        <div class="tm-avatar-wrap">
+                            <img src="images/team/dassanayake.jpg" alt="D.M.G.S. Dassanayake" class="tm-avatar-img" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+                            <div class="tm-initials">DD</div>
+                        </div>
+                        <div class="tm-name">W.S.S. Perera</div>
+                        <div class="tm-id">E/21/302</div>
+                        <a href="#" class="tm-port">On eportfolio</a>
+                        <div class="tm-links">
+                            <a href="#" class="tm-ico" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                            <a href="#" class="tm-ico" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            <a href="mailto:" class="tm-ico" title="Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                        </div>
+                    </div>
+
+                    <div class="tm-card">
+                        <div class="tm-avatar-wrap">
+                            <img src="images/team/dharmarathne.jpg" alt="B.A.M.I.E. Dharmarathne" class="tm-avatar-img" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+                            <div class="tm-initials">BD</div>
+                        </div>
+                        <div class="tm-name">Zaid</div>
+                        <div class="tm-id">E/21/452</div>
+                        <a href="#" class="tm-port">On eportfolio</a>
+                        <div class="tm-links">
+                            <a href="#" class="tm-ico" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                            <a href="#" class="tm-ico" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            <a href="mailto:" class="tm-ico" title="Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                        </div>
+                    </div>
+
+                </div>
+            <!-- Supervisor -->
+            <div class="tm-group tm-supervisor-group rev">
+                <div class="tm-group-label">Supervisor</div>
+                <div class="tm-row tm-row-solo">
+                    <div class="tm-card">
+                        <div class="tm-avatar-wrap">
+                            <img src="images/team/nawinne.jpg" alt="Dr. Isuru Nawinne" class="tm-avatar-img" onerror="this.style.display='none';this.nextSibling.style.display='flex'">
+                            <div class="tm-initials">IN</div>
+                        </div>
+                        <div class="tm-name">Dr. Isuru Nawinne</div>
+                        <div class="tm-id">Project Supervisor</div>
+                        <div class="tm-links">
+                            <a href="#" class="tm-ico" title="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg></a>
+                            <a href="#" class="tm-ico" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                            <a href="mailto:" class="tm-ico" title="Email"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="timeline">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">07 · Project Timeline</div>
+                <h2>Development<br>Phases</h2>
+            </div>
+            <div class="tl rev">
+                <div class="tli"><div class="tlp">Phase 01<br>Weeks 1–4</div><div class="tlc"><div class="tlt">Requirements &amp; Hardware Procurement</div><p class="tld">Stakeholder interviews, site survey of target areas, sensor selection and testing, component procurement, AWS environment setup and initial configuration.</p></div></div>
+                <div class="tli"><div class="tlp">Phase 02<br>Weeks 5–10</div><div class="tlc"><div class="tlt">Embedded System &amp; Probe Development</div><p class="tld">ESP32 firmware, RS485/LoRa communication protocol, sensor calibration routines, first probe prototypes assembled and field-tested in a controlled environment.</p></div></div>
+                <div class="tli"><div class="tlp">Phase 03<br>Weeks 8–14</div><div class="tlc"><div class="tlt">Cloud Backend &amp; Data Pipeline</div><p class="tld">AWS IoT Core configuration, FastAPI backend, TimescaleDB schema, sensor ingestion pipeline, and risk analysis algorithm with threshold configuration.</p></div></div>
+                <div class="tli"><div class="tlp">Phase 04<br>Weeks 12–18</div><div class="tlc"><div class="tlt">Mobile App &amp; Admin Dashboard</div><p class="tld">Flutter app with dual-connection logic, background alarm, Digital Key access control. React admin dashboard with real-time charts and threshold controls.</p></div></div>
+                <div class="tli"><div class="tlp">Phase 05<br>Weeks 16–20</div><div class="tlc"><div class="tlt">Research API &amp; Integration Testing</div><p class="tld">Research API endpoints, rate limiting, API key management. End-to-end integration testing of the complete system stack and simulated alert scenarios.</p></div></div>
+                <div class="tli"><div class="tlp">Phase 06<br>Weeks 20–24</div><div class="tlc"><div class="tlt">Field Deployment &amp; Evaluation</div><p class="tld">Live deployment, performance evaluation, latency measurements, battery life assessment, user acceptance testing, final report and viva preparation.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="budget">
+        <div class="con">
+            <div class="shd rev">
+                <div class="stg">08 · Project Budget</div>
+                <h2>Hardware<br>Budget</h2>
+                <p class="sd">Estimated component costs for a single SlideSense probe unit in Sri Lankan Rupees (LKR).</p>
+            </div>
+            <div class="bgt-wrap rev">
+                <table class="bgt">
+                    <thead>
+                        <tr>
+                            <th class="bgt-name">Item Name</th>
+                            <th>Quantity</th>
+                            <th>Unit Price (LKR)</th>
+                            <th>Total (LKR)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="bgt-item">ESP32 Development Board</td><td>2</td><td>1,850.00</td><td>3,700.00</td></tr>
+                        <tr><td class="bgt-item">BNO055 9-Axis IMU Sensor</td><td>2</td><td>2,400.00</td><td>4,800.00</td></tr>
+                        <tr><td class="bgt-item">SCA60C Single-Axis Tilt Sensor</td><td>2</td><td>3,200.00</td><td>6,400.00</td></tr>
+                        <tr><td class="bgt-item">Dielectric Soil Moisture Sensor</td><td>4</td><td>1,600.00</td><td>6,400.00</td></tr>
+                        <tr><td class="bgt-item">Tipping Bucket Rain Gauge</td><td>1</td><td>8,500.00</td><td>8,500.00</td></tr>
+                        <tr><td class="bgt-item">Geophone Vibration Sensor</td><td>2</td><td>2,200.00</td><td>4,400.00</td></tr>
+                        <tr><td class="bgt-item">LoRa SX1278 Transceiver Module</td><td>4</td><td>1,100.00</td><td>4,400.00</td></tr>
+                        <tr><td class="bgt-item">RS485 TTL Converter Module</td><td>4</td><td>350.00</td><td>1,400.00</td></tr>
+                        <tr><td class="bgt-item">12V / 50W Solar Panel + Controller</td><td>1</td><td>4,920.00</td><td>4,920.00</td></tr>
+                        <tr><td class="bgt-item">12V 5000mAh Li-ion Battery Pack</td><td>1</td><td>7,200.00</td><td>7,200.00</td></tr>
+                        <tr><td class="bgt-item">Buck Boost Voltage Regulator</td><td>2</td><td>1,600.00</td><td>3,200.00</td></tr>
+                        <tr><td class="bgt-item">Weatherproof Enclosure (IP67)</td><td>1</td><td>3,800.00</td><td>3,800.00</td></tr>
+                        <tr><td class="bgt-item">Steel Ground Pointer &amp; Mounting Rod</td><td>1</td><td>4,500.00</td><td>4,500.00</td></tr>
+                        <tr><td class="bgt-item">PCB Fabrication (Custom Boards)</td><td>5</td><td>1,200.00</td><td>6,000.00</td></tr>
+                        <tr><td class="bgt-item">Miscellaneous (Cables, Connectors)</td><td>—</td><td>—</td><td>2,500.00</td></tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="bgt-total">
+                            <td colspan="3">Grand Total</td>
+                            <td>72,120.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="con">
+            <div class="fi2">
+                <div>
+                    <div class="fl">GeoShield</div>
+                    <p style="font-size:12px;color:var(--t2);margin-top:4px;font-family:'JetBrains Mono';letter-spacing:.05em;">IoT Landslide Detection &amp; Early Warning System</p>
+                </div>
+                <div class="ft">3YP · 2024–2025</div>
+                <div class="fd2"><p>Faculty of Engineering</p><p>Dept. of Computer Science &amp; Engineering</p></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link to External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
