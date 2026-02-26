@@ -1,0 +1,31 @@
+{
+    "team": [
+        {
+            "name": "D.M.E.S. Dewagedara",
+            "email": "e21087@eng.pdn.ac.lk",
+            "eNumber": "E/21/087"
+        },
+        {
+            "name": "Fikry",
+            "email": "e21138@eng.pdn.ac.lk",
+            "eNumber": "E/21/138"
+        },
+        {
+            "name": "Sahandi Perera",
+            "email": "e21302@eng.pdn.ac.lk",
+            "eNumber": "E/21/302"
+        },
+        {
+            "name": "Zaid",
+            "email": "e21452@eng.pdn.ac.lk",
+            "eNumber": "E/21/452"
+        }
+    ],
+    "supervisors": [
+        {
+            "name": "Ms. Yasodha Vimukthi",
+            "email": "yasodhav@eng.pdn.ac.lk"
+        }
+    ],
+    "tags": ["Web", "Embedded Systems","IoT"]
+}
